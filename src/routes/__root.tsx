@@ -83,6 +83,12 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
       { name: "theme-color", content: "#f6f1e6" },
+      { property: "og:title", content: "Encontro — A Gathering in Portugal, 2026" },
+      { name: "twitter:title", content: "Encontro — A Gathering in Portugal, 2026" },
+      { property: "og:description", content: "Seven days of quiet conversation, slow meals, and salt air on the Atlantic coast. Limited to forty travelers." },
+      { name: "twitter:description", content: "Seven days of quiet conversation, slow meals, and salt air on the Atlantic coast. Limited to forty travelers." },
+      { property: "og:image", content: "https://storage.googleapis.com/gpt-engineer-file-uploads/sKXlAhg8XWPxUuDHat8ikLhhZVA2/social-images/social-1781710089678-innate_logo.webp" },
+      { name: "twitter:image", content: "https://storage.googleapis.com/gpt-engineer-file-uploads/sKXlAhg8XWPxUuDHat8ikLhhZVA2/social-images/social-1781710089678-innate_logo.webp" },
     ],
     links: [
       { rel: "stylesheet", href: appCss },
