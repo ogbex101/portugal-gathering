@@ -1,68 +1,61 @@
 import { useEffect, useRef, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { ArrowRight, Check, Loader2 } from "lucide-react";
+import { ArrowRight, Check, Loader2, Volume2, VolumeX, CalendarDays, MapPin, Users } from "lucide-react";
 import heroPoster from "@/assets/hero-portugal.jpg";
+import heroVideo from "@/assets/hero-glimpses.mp4";
 import { useMouseParallax } from "./use-parallax";
-
-const HLS_SRC =
-  "https://test-streams.mux.dev/x36xhzz/x36xhzz.m3u8";
 
 export function Hero() {
   const videoRef = useRef<HTMLVideoElement | null>(null);
   const { x, y } = useMouseParallax();
+  const [muted, setMuted] = useState(true);
 
-  useEffect(() => {
+  const toggleSound = () => {
     const video = videoRef.current;
     if (!video) return;
-    let hls: { destroy: () => void } | null = null;
-    if (video.canPlayType("application/vnd.apple.mpegurl")) {
-      video.src = HLS_SRC;
-    } else {
-      import("hls.js")
-        .then(({ default: Hls }) => {
-          if (Hls.isSupported()) {
-            const instance = new Hls({ enableWorker: true, lowLatencyMode: false });
-            instance.loadSource(HLS_SRC);
-            instance.attachMedia(video);
-            hls = instance;
-          }
-        })
-        .catch(() => {});
-    }
-    return () => hls?.destroy();
-  }, []);
+    const next = !muted;
+    video.muted = next;
+    if (!next) video.play().catch(() => {});
+    setMuted(next);
+  };
 
   return (
     <section
       id="top"
-      className="relative isolate flex min-h-dvh items-center justify-center overflow-hidden bg-charcoal text-cream"
+      className="relative isolate flex min-h-dvh items-center overflow-hidden bg-charcoal text-cream"
     >
       {/* Video layer */}
       <motion.div
         className="absolute inset-0 z-0"
-        style={{ x: x * -20, y: y * -20, scale: 1.08 }}
+        style={{ x: x * -16, y: y * -16, scale: 1.1 }}
       >
-        <img
-          src={heroPoster}
-          alt=""
-          aria-hidden
-          className="absolute inset-0 size-full object-cover"
-        />
         <video
           ref={videoRef}
           autoPlay
           muted
           loop
           playsInline
+          preload="auto"
           poster={heroPoster}
           aria-hidden
-          className="absolute inset-0 size-full object-cover opacity-90"
-        />
+          className="absolute inset-0 size-full object-cover"
+        >
+          <source src={heroVideo} type="video/mp4" />
+        </video>
       </motion.div>
 
-      {/* Gradients */}
-      <div className="pointer-events-none absolute inset-0 z-[1] bg-[linear-gradient(180deg,oklch(0.22_0.012_75/0.55)_0%,oklch(0.22_0.012_75/0.25)_35%,oklch(0.22_0.012_75/0.55)_70%,oklch(0.22_0.012_75/0.85)_100%)]" />
-      <div className="pointer-events-none absolute inset-0 z-[1] bg-[radial-gradient(ellipse_at_center,oklch(0.22_0.012_75/0.35)_0%,oklch(0.22_0.012_75/0.65)_100%)]" />
+      {/* Cinematic gradients + vignette */}
+      <div className="pointer-events-none absolute inset-0 z-[1] bg-[linear-gradient(180deg,oklch(0.22_0.012_75/0.45)_0%,oklch(0.22_0.012_75/0.15)_30%,oklch(0.22_0.012_75/0.4)_62%,oklch(0.22_0.012_75/0.92)_100%)]" />
+      <div className="pointer-events-none absolute inset-0 z-[1] bg-[radial-gradient(120%_90%_at_30%_40%,transparent_0%,oklch(0.22_0.012_75/0.55)_100%)]" />
+      {/* Film grain */}
+      <div
+        aria-hidden
+        className="pointer-events-none absolute inset-0 z-[1] opacity-[0.06] mix-blend-overlay"
+        style={{
+          backgroundImage:
+            "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E\")",
+        }}
+      />
 
       {/* Decorative orbs */}
       <motion.div
@@ -76,67 +69,87 @@ export function Hero() {
         className="pointer-events-none absolute -right-24 bottom-1/4 z-[2] size-96 rounded-full bg-forest/30 blur-3xl"
       />
 
-      {/* Floating cards */}
-      <motion.div
-        style={{ x: x * 18, y: y * 12 }}
-        className="pointer-events-none absolute left-[6%] top-[22%] z-10 hidden rounded-2xl glass px-4 py-3 text-xs text-charcoal shadow-soft lg:block"
+      {/* Sound toggle */}
+      <motion.button
+        type="button"
+        onClick={toggleSound}
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 1.2, duration: 0.8 }}
+        aria-label={muted ? "Unmute video" : "Mute video"}
+        className="absolute right-5 top-24 z-20 inline-flex items-center gap-2 rounded-full glass px-3.5 py-2 text-[11px] font-medium uppercase tracking-wider text-charcoal shadow-soft transition hover:shadow-lift sm:right-8"
       >
-        <div className="font-serif text-base">14 — 21 June 2026</div>
-        <div className="opacity-70">Comporta, Portugal</div>
-      </motion.div>
-      <motion.div
-        style={{ x: x * -22, y: y * -10 }}
-        className="pointer-events-none absolute right-[6%] top-[28%] z-10 hidden rounded-2xl glass px-4 py-3 text-xs text-charcoal shadow-soft lg:block"
-      >
-        <div className="font-serif text-base">40 guests</div>
-        <div className="opacity-70">Intentionally small</div>
-      </motion.div>
+        {muted ? <VolumeX className="size-4" /> : <Volume2 className="size-4" />}
+        <span className="hidden sm:inline">{muted ? "Sound off" : "Sound on"}</span>
+      </motion.button>
 
-      {/* Content */}
-      <motion.div
-        style={{ x: x * 6, y: y * 6 }}
-        className="relative z-10 mx-auto max-w-4xl px-6 pt-24 text-center"
-      >
-        <motion.p
-          initial={{ opacity: 0, y: 16 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.2 }}
-          className="mb-6 text-xs uppercase tracking-[0.3em] text-cream/70"
-        >
-          Portugal · June 2026
-        </motion.p>
-        <motion.h1
-          initial={{ opacity: 0, y: 24 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1, delay: 0.35, ease: [0.22, 1, 0.36, 1] }}
-          className="text-balance font-serif text-5xl leading-[1.05] tracking-tight sm:text-6xl md:text-7xl lg:text-[5.5rem]"
-        >
-          A week of slow days,
-          <br />
-          long meals, and{" "}
-          <em className="font-serif italic text-gold">something</em>
-          <br className="hidden sm:block" />
-          you can&apos;t quite name.
-        </motion.h1>
-        <motion.p
-          initial={{ opacity: 0, y: 16 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.6 }}
-          className="mx-auto mt-7 max-w-xl text-pretty text-base leading-relaxed text-cream/80 sm:text-lg"
-        >
-          Encontro is a gathering for forty curious people on the Atlantic
-          coast — built around quiet conversation, hand-made food, and the
-          particular light of a Portuguese June.
-        </motion.p>
-        <motion.div
-          initial={{ opacity: 0, y: 16 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.85 }}
-          className="mt-10 flex justify-center"
-        >
-          <EmailCapture />
+      {/* Content — editorial, anchored lower-left */}
+      <div className="relative z-10 mx-auto w-full max-w-6xl px-6 pb-28 pt-32 sm:pb-32">
+        <motion.div style={{ x: x * 6, y: y * 6 }} className="max-w-3xl">
+          <motion.div
+            initial={{ opacity: 0, y: 16 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+            className="mb-6 flex items-center gap-3 text-xs uppercase tracking-[0.3em] text-cream/70"
+          >
+            <span className="h-px w-10 bg-gold/70" />
+            Portugal · June 2026
+          </motion.div>
+          <motion.h1
+            initial={{ opacity: 0, y: 24 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1, delay: 0.35, ease: [0.22, 1, 0.36, 1] }}
+            className="text-balance font-serif text-5xl leading-[1.02] tracking-tight sm:text-6xl md:text-7xl lg:text-[5.5rem]"
+          >
+            A week of slow days,
+            <br />
+            long meals, and{" "}
+            <em className="font-serif italic text-gold">something</em>
+            <br className="hidden sm:block" />
+            you can&apos;t quite name.
+          </motion.h1>
+          <motion.p
+            initial={{ opacity: 0, y: 16 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.6 }}
+            className="mt-7 max-w-xl text-pretty text-base leading-relaxed text-cream/80 sm:text-lg"
+          >
+            Encontro is a gathering for forty curious people on the Atlantic
+            coast — built around music, movement, quiet conversation, and the
+            particular light of a Portuguese June.
+          </motion.p>
+          <motion.div
+            initial={{ opacity: 0, y: 16 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.85 }}
+            className="mt-10"
+          >
+            <EmailCapture />
+          </motion.div>
+
+          {/* Meta strip */}
+          <motion.dl
+            initial={{ opacity: 0, y: 16 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 1.05 }}
+            className="mt-12 flex flex-wrap items-center gap-x-8 gap-y-4 border-t border-cream/15 pt-6 text-sm"
+          >
+            {[
+              { icon: CalendarDays, label: "Dates", value: "14 — 21 June 2026" },
+              { icon: MapPin, label: "Where", value: "Comporta, Portugal" },
+              { icon: Users, label: "Size", value: "40 guests" },
+            ].map(({ icon: Icon, label, value }) => (
+              <div key={label} className="flex items-center gap-2.5">
+                <Icon className="size-4 text-gold" aria-hidden />
+                <div>
+                  <dt className="text-[10px] uppercase tracking-[0.25em] text-cream/50">{label}</dt>
+                  <dd className="font-serif text-base text-cream">{value}</dd>
+                </div>
+              </div>
+            ))}
+          </motion.dl>
         </motion.div>
-      </motion.div>
+      </div>
 
       {/* Bottom scroll cue */}
       <motion.div
@@ -144,9 +157,16 @@ export function Hero() {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 1.4, duration: 1 }}
-        className="absolute bottom-8 left-1/2 -translate-x-1/2 text-[10px] uppercase tracking-[0.3em] text-cream/60"
+        className="absolute bottom-7 left-1/2 z-10 flex -translate-x-1/2 flex-col items-center gap-2 text-[10px] uppercase tracking-[0.3em] text-cream/60"
       >
         Scroll
+        <span className="h-8 w-px overflow-hidden bg-cream/20">
+          <motion.span
+            className="block h-3 w-px bg-gold"
+            animate={{ y: [-12, 24] }}
+            transition={{ duration: 1.8, repeat: Infinity, ease: "easeInOut" }}
+          />
+        </span>
       </motion.div>
     </section>
   );
