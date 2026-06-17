@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence, type Variants } from "framer-motion";
 import {
   ChevronDown, X, ArrowUpRight, Plane, Sunrise, Utensils, Waves, Moon, Sparkles,
   Quote, ChevronLeft, ChevronRight,
@@ -16,9 +16,10 @@ import t2 from "@/assets/testimonial-2.jpg";
 import t3 from "@/assets/testimonial-3.jpg";
 import finalCta from "@/assets/final-cta.jpg";
 
-const fadeUp = {
+const EASE = [0.22, 1, 0.36, 1] as const;
+const fadeUp: Variants = {
   hidden: { opacity: 0, y: 28 },
-  show: { opacity: 1, y: 0, transition: { duration: 0.9, ease: [0.22, 1, 0.36, 1] } },
+  show: { opacity: 1, y: 0, transition: { duration: 0.9, ease: EASE } },
 };
 
 function SectionHeading({ eyebrow, title, lead, em }: { eyebrow: string; title: string; lead?: string; em?: string }) {
