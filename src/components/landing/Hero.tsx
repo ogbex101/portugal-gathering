@@ -61,8 +61,8 @@ export function Hero() {
       </motion.div>
 
       {/* Gradients */}
-      <div className="pointer-events-none absolute inset-0 z-[1] bg-gradient-dusk" />
-      <div className="pointer-events-none absolute inset-0 z-[1] bg-[radial-gradient(ellipse_at_center,transparent_30%,oklch(0.22_0.012_75/0.55)_100%)]" />
+      <div className="pointer-events-none absolute inset-0 z-[1] bg-[linear-gradient(180deg,oklch(0.22_0.012_75/0.55)_0%,oklch(0.22_0.012_75/0.25)_35%,oklch(0.22_0.012_75/0.55)_70%,oklch(0.22_0.012_75/0.85)_100%)]" />
+      <div className="pointer-events-none absolute inset-0 z-[1] bg-[radial-gradient(ellipse_at_center,oklch(0.22_0.012_75/0.35)_0%,oklch(0.22_0.012_75/0.65)_100%)]" />
 
       {/* Decorative orbs */}
       <motion.div
