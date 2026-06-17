@@ -114,7 +114,7 @@ export function Hero() {
             transition={{ duration: 0.8, delay: 0.6 }}
             className="mt-7 max-w-xl text-pretty text-base leading-relaxed text-cream/80 sm:text-lg"
           >
-            Encontro is a gathering for forty curious people on the Atlantic
+            Innate is a gathering for forty curious people on the Atlantic
             coast — built around music, movement, quiet conversation, and the
             particular light of a Portuguese June.
           </motion.p>

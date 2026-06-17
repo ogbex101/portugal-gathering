@@ -15,9 +15,9 @@ import {
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Encontro — A Gathering in Portugal, June 2026" },
+      { title: "Innate — A Gathering in Portugal, June 2026" },
       { name: "description", content: "Seven days of quiet conversation, slow meals, and salt air on the Atlantic coast. Forty travelers, one long table." },
-      { property: "og:title", content: "Encontro — A Gathering in Portugal, June 2026" },
+      { property: "og:title", content: "Innate — A Gathering in Portugal, June 2026" },
       { property: "og:description", content: "Seven days of quiet conversation, slow meals, and salt air on the Atlantic coast." },
       { property: "og:type", content: "website" },
       { property: "og:url", content: "/" },
@@ -29,7 +29,7 @@ export const Route = createFileRoute("/")({
         children: JSON.stringify({
           "@context": "https://schema.org",
           "@type": "Event",
-          name: "Encontro 2026 — A Gathering in Portugal",
+          name: "Innate 2026 — A Gathering in Portugal",
           startDate: "2026-06-14",
           endDate: "2026-06-21",
           eventStatus: "https://schema.org/EventScheduled",
@@ -40,7 +40,7 @@ export const Route = createFileRoute("/")({
             address: { "@type": "PostalAddress", addressCountry: "PT", addressLocality: "Comporta" },
           },
           description: "A seven-day gathering for forty travelers on the Atlantic coast of Portugal.",
-          organizer: { "@type": "Organization", name: "Encontro" },
+          organizer: { "@type": "Organization", name: "Innate" },
         }),
       },
     ],

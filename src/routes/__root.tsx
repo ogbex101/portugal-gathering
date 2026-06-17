@@ -77,9 +77,9 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Encontro — A Gathering in Portugal, 2026" },
+      { title: "Innate — A Gathering in Portugal, 2026" },
       { name: "description", content: "Seven days of quiet conversation, slow meals, and salt air on the Atlantic coast. Limited to forty travelers." },
-      { property: "og:site_name", content: "Encontro" },
+      { property: "og:site_name", content: "Innate" },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
       { name: "theme-color", content: "#f6f1e6" },

@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
+import { Logo } from "./Logo";
 
 const links = [
   { label: "About", href: "#about" },
@@ -31,9 +32,8 @@ export function Navbar() {
           scrolled ? "scale-[0.98] shadow-lift" : ""
         }`}
       >
-        <a href="#top" className="flex items-center gap-2 pl-2 pr-1">
-          <span className="size-2 rounded-full bg-primary" aria-hidden />
-          <span className="font-serif text-lg leading-none tracking-tight">Encontro</span>
+        <a href="#top" className="flex items-center pl-3 pr-1" aria-label="Innate — home">
+          <Logo className="text-xl text-foreground" />
         </a>
         <ul className="hidden items-center gap-1 md:flex">
           {links.map((l) => (

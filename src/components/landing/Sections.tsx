@@ -4,17 +4,22 @@ import {
   ChevronDown, X, ArrowUpRight, Plane, Sunrise, Utensils, Waves, Moon, Sparkles,
   Quote, ChevronLeft, ChevronRight,
 } from "lucide-react";
-import community from "@/assets/community-story.jpg";
-import g1 from "@/assets/gallery-1.jpg";
-import g2 from "@/assets/gallery-2.jpg";
-import g3 from "@/assets/gallery-3.jpg";
-import g4 from "@/assets/gallery-4.jpg";
-import g5 from "@/assets/gallery-5.jpg";
-import g6 from "@/assets/gallery-6.jpg";
+import { Logo } from "./Logo";
+import community from "@/assets/m-sand.jpg";
+import mBeach from "@/assets/m-beach.jpg";
+import mHeal from "@/assets/m-heal.jpg";
+import mRiver from "@/assets/m-river.jpg";
+import mCircle from "@/assets/m-circle.jpg";
+import mDrum from "@/assets/m-drum.jpg";
+import mFire from "@/assets/m-fire.jpg";
+import mPeacock from "@/assets/m-peacock.jpg";
+import mGlitter from "@/assets/m-glitter.jpg";
+import mDjembe from "@/assets/m-djembe.jpg";
+import mWater from "@/assets/m-water.jpg";
 import t1 from "@/assets/testimonial-1.jpg";
 import t2 from "@/assets/testimonial-2.jpg";
 import t3 from "@/assets/testimonial-3.jpg";
-import finalCta from "@/assets/final-cta.jpg";
+import finalCta from "@/assets/m-dance.jpg";
 
 const EASE = [0.22, 1, 0.36, 1] as const;
 const fadeUp: Variants = {
@@ -61,25 +66,25 @@ export function CommunityStory() {
             Our Story
           </p>
           <h2 className="text-balance font-serif text-4xl leading-[1.08] tracking-tight sm:text-5xl">
-            Built around the table, not the stage. <em className="italic text-earth">Quiet by design.</em>
+            Built around the circle, not the stage. <em className="italic text-earth">Quiet by design.</em>
           </h2>
           <div className="mt-8 space-y-5 text-pretty text-base leading-relaxed text-muted-foreground">
             <p>
-              Encontro began in 2022 as a dinner for twelve in a stone house
-              outside Lisbon. There were no speakers, no agenda — only long
-              evenings, hand-rolled bread, and the slow recognition that we
-              had been missing this kind of company.
+              Innate began in 2022 as a circle of twelve in a stone house
+              outside Lisbon. There were no speakers, no agenda — only music,
+              long swims, and the slow recognition that we had been missing
+              this kind of company.
             </p>
             <p>
-              Four years later, it is still the same dinner. We just set a
-              longer table.
+              Four years later, it is still the same circle. We just made
+              a little more room.
             </p>
           </div>
           <dl className="mt-10 grid grid-cols-3 gap-6 border-t border-border pt-8">
             {[
               ["7", "days together"],
               ["40", "fellow travelers"],
-              ["1", "long table"],
+              ["1", "circle"],
             ].map(([n, l]) => (
               <div key={l}>
                 <dt className="font-serif text-4xl text-forest">{n}</dt>
@@ -99,7 +104,7 @@ export function CommunityStory() {
           <div className="aspect-[4/5] overflow-hidden rounded-3xl shadow-lift">
             <img
               src={community}
-              alt="Guests sharing dinner under lantern light in a Portuguese olive grove"
+              alt="A circle gathered on the sand by the river in the Portuguese sun"
               width={1280}
               height={1600}
               loading="lazy"
@@ -122,12 +127,12 @@ export function CommunityStory() {
 
 /* ───────────────────────── Gallery ───────────────────────── */
 const galleryItems = [
-  { src: g1, caption: "The farmhouse, Alentejo", aspect: "aspect-[4/5]" },
-  { src: g3, caption: "Cliffs at Vicentina", aspect: "aspect-[4/3]" },
-  { src: g2, caption: "Morning bread, hands at work", aspect: "aspect-square" },
-  { src: g4, caption: "Fire on the dunes", aspect: "aspect-[4/5]" },
-  { src: g5, caption: "First light, the deck", aspect: "aspect-square" },
-  { src: g6, caption: "Azulejos, in the chapel hall", aspect: "aspect-[4/5]" },
+  { src: mBeach, caption: "Down by the water", aspect: "aspect-[4/5]" },
+  { src: mDrum, caption: "Rhythm by the river", aspect: "aspect-[4/3]" },
+  { src: mPeacock, caption: "An unexpected guest", aspect: "aspect-square" },
+  { src: mGlitter, caption: "Voices after dark", aspect: "aspect-[4/5]" },
+  { src: mHeal, caption: "The room, dissolving", aspect: "aspect-square" },
+  { src: mWater, caption: "At the river's edge", aspect: "aspect-[4/5]" },
 ];
 
 export function Gallery() {
@@ -212,10 +217,10 @@ export function Gallery() {
 
 /* ───────────────────────── Experience Highlights ───────────────────────── */
 const experiences = [
-  { img: g5, title: "Slow Mornings", desc: "Sunrise on the deck, coffee, no schedule until 10." },
-  { img: g2, title: "Hands & Fire", desc: "Bread baked at dawn, fish grilled over driftwood." },
-  { img: g3, title: "Wild Coastline", desc: "Long walks along the cliffs of the Vicentine coast." },
-  { img: g4, title: "Long Nights", desc: "Bonfires under the stars and conversations that linger." },
+  { img: mCircle, no: "01", title: "Sound & Circle", desc: "Handpan, drums, and song — mornings that begin in a circle, not an alarm." },
+  { img: mRiver, no: "02", title: "Wild Water", desc: "Swims in the river, long afternoons on the sand, the sun doing the planning." },
+  { img: mDjembe, no: "03", title: "Move Together", desc: "Ecstatic dance, bodywork, and the kind of closeness words skip past." },
+  { img: mFire, no: "04", title: "Fire at Night", desc: "Firelight, movement, and music that runs until the dark gives way." },
 ];
 
 export function Experience() {
@@ -227,7 +232,7 @@ export function Experience() {
           title="What the week feels like, in"
           em="four chapters."
         />
-        <div className="mt-16 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="mt-16 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
           {experiences.map((e, i) => (
             <motion.article
               key={e.title}
@@ -235,21 +240,30 @@ export function Experience() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-80px" }}
               transition={{ duration: 0.7, delay: i * 0.08, ease: [0.22, 1, 0.36, 1] }}
-              className="group relative overflow-hidden rounded-3xl border border-border/60 bg-card shadow-soft transition-all duration-500 hover:-translate-y-1 hover:shadow-lift"
+              className={`group relative overflow-hidden rounded-3xl shadow-soft transition-all duration-500 hover:-translate-y-1.5 hover:shadow-lift ${
+                i % 2 === 1 ? "lg:translate-y-8" : ""
+              }`}
             >
-              <div className="aspect-[4/5] overflow-hidden">
+              <div className="aspect-[3/4] overflow-hidden">
                 <img
                   src={e.img}
-                  alt=""
+                  alt={e.title}
                   loading="lazy"
-                  className="size-full object-cover transition-transform duration-1000 group-hover:scale-110"
+                  className="size-full object-cover transition-transform duration-[1400ms] ease-out group-hover:scale-110"
                 />
               </div>
-              <div className="p-6">
+              {/* gradient + overlaid text */}
+              <div className="absolute inset-0 bg-gradient-to-t from-charcoal/90 via-charcoal/20 to-transparent" />
+              <span className="absolute left-5 top-5 font-serif text-sm text-cream/70">
+                {e.no}
+              </span>
+              <div className="absolute inset-x-0 bottom-0 p-6 text-cream">
                 <h3 className="font-serif text-2xl leading-snug">{e.title}</h3>
-                <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{e.desc}</p>
+                <p className="mt-2 max-h-0 overflow-hidden text-sm leading-relaxed text-cream/85 opacity-0 transition-all duration-500 group-hover:max-h-28 group-hover:opacity-100">
+                  {e.desc}
+                </p>
               </div>
-              <span className="pointer-events-none absolute inset-0 rounded-3xl border border-transparent transition-colors duration-500 group-hover:border-accent/50" />
+              <span className="pointer-events-none absolute inset-0 rounded-3xl ring-1 ring-inset ring-cream/10 transition-colors duration-500 group-hover:ring-gold/40" />
             </motion.article>
           ))}
         </div>
@@ -261,7 +275,7 @@ export function Experience() {
 /* ───────────────────────── Testimonials ───────────────────────── */
 const testimonials = [
   { img: t1, quote: "I came for the food. I left with seven new friends and a different idea of what a week could be.", name: "Mariana Costa", role: "Architect · Lisbon" },
-  { img: t2, quote: "Encontro has the rare quality of feeling both effortless and deeply considered. Every detail breathes.", name: "James Holloway", role: "Writer · London" },
+  { img: t2, quote: "Innate has the rare quality of feeling both effortless and deeply considered. Every detail breathes.", name: "James Holloway", role: "Writer · London" },
   { img: t3, quote: "I have been to many retreats. None of them felt like coming home. This one does.", name: "Sigrid Wallin", role: "Therapist · Stockholm" },
 ];
 
@@ -383,7 +397,7 @@ export function Journey() {
 
 /* ───────────────────────── FAQ ───────────────────────── */
 const faqs = [
-  { q: "Who attends Encontro?", a: "Forty curious people from a range of fields and backgrounds — writers, founders, doctors, artists, parents on sabbatical. The thread is intention, not industry." },
+  { q: "Who attends Innate?", a: "Forty curious people from a range of fields and backgrounds — writers, founders, doctors, artists, parents on sabbatical. The thread is intention, not industry." },
   { q: "What is included?", a: "Six nights of accommodation, all meals and drinks, ground transport from Lisbon, and every experience on the schedule. You only book the flight." },
   { q: "Is there an application?", a: "Yes. We read every request. It is gentle, not selective — we simply want the room to balance well." },
   { q: "What is the investment?", a: "From €3,400 per person, shared. Private rooms and partner pricing are available on request." },
@@ -501,9 +515,8 @@ export function Footer() {
     <footer className="bg-charcoal text-cream">
       <div className="container mx-auto grid max-w-6xl gap-12 px-6 py-20 md:grid-cols-[1.4fr_1fr_1fr]">
         <div>
-          <div className="flex items-center gap-2">
-            <span className="size-2 rounded-full bg-gold" aria-hidden />
-            <span className="font-serif text-2xl">Encontro</span>
+          <div className="flex items-center">
+            <Logo className="text-3xl text-cream" />
           </div>
           <p className="mt-4 max-w-sm text-sm leading-relaxed text-cream/70">
             A gathering for forty people on the Atlantic coast of Portugal.
@@ -550,7 +563,7 @@ export function Footer() {
       </div>
       <div className="border-t border-cream/10">
         <div className="container mx-auto flex max-w-6xl flex-col items-center justify-between gap-3 px-6 py-6 text-xs text-cream/50 sm:flex-row">
-          <p>© 2026 Encontro. Made slowly in Lisbon.</p>
+          <p>© 2026 Innate. Made slowly in Lisbon.</p>
           <div className="flex gap-5">
             <a href="#" className="hover:text-cream">Privacy</a>
             <a href="#" className="hover:text-cream">Terms</a>
