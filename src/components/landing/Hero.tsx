@@ -35,11 +35,11 @@ export function Hero() {
   return (
     <section
       id="top"
-      className="relative flex min-h-dvh items-center justify-center overflow-hidden bg-charcoal text-cream"
+      className="relative isolate flex min-h-dvh items-center justify-center overflow-hidden bg-charcoal text-cream"
     >
       {/* Video layer */}
       <motion.div
-        className="absolute inset-0 -z-10"
+        className="absolute inset-0 z-0"
         style={{ x: x * -20, y: y * -20, scale: 1.08 }}
       >
         <img
@@ -61,32 +61,32 @@ export function Hero() {
       </motion.div>
 
       {/* Gradients */}
-      <div className="pointer-events-none absolute inset-0 -z-10 bg-gradient-dusk" />
-      <div className="pointer-events-none absolute inset-0 -z-10 bg-[radial-gradient(ellipse_at_center,transparent_30%,oklch(0.22_0.012_75/0.55)_100%)]" />
+      <div className="pointer-events-none absolute inset-0 z-[1] bg-gradient-dusk" />
+      <div className="pointer-events-none absolute inset-0 z-[1] bg-[radial-gradient(ellipse_at_center,transparent_30%,oklch(0.22_0.012_75/0.55)_100%)]" />
 
       {/* Decorative orbs */}
       <motion.div
         aria-hidden
         style={{ x: x * 30, y: y * 30 }}
-        className="pointer-events-none absolute -left-24 top-1/3 size-72 rounded-full bg-gold/20 blur-3xl"
+        className="pointer-events-none absolute -left-24 top-1/3 z-[2] size-72 rounded-full bg-gold/20 blur-3xl"
       />
       <motion.div
         aria-hidden
         style={{ x: x * -40, y: y * -20 }}
-        className="pointer-events-none absolute -right-24 bottom-1/4 size-96 rounded-full bg-forest/30 blur-3xl"
+        className="pointer-events-none absolute -right-24 bottom-1/4 z-[2] size-96 rounded-full bg-forest/30 blur-3xl"
       />
 
       {/* Floating cards */}
       <motion.div
         style={{ x: x * 18, y: y * 12 }}
-        className="pointer-events-none absolute left-[6%] top-[22%] hidden rounded-2xl glass px-4 py-3 text-xs text-charcoal shadow-soft lg:block"
+        className="pointer-events-none absolute left-[6%] top-[22%] z-10 hidden rounded-2xl glass px-4 py-3 text-xs text-charcoal shadow-soft lg:block"
       >
         <div className="font-serif text-base">14 — 21 June 2026</div>
         <div className="opacity-70">Comporta, Portugal</div>
       </motion.div>
       <motion.div
         style={{ x: x * -22, y: y * -10 }}
-        className="pointer-events-none absolute right-[6%] top-[28%] hidden rounded-2xl glass px-4 py-3 text-xs text-charcoal shadow-soft lg:block"
+        className="pointer-events-none absolute right-[6%] top-[28%] z-10 hidden rounded-2xl glass px-4 py-3 text-xs text-charcoal shadow-soft lg:block"
       >
         <div className="font-serif text-base">40 guests</div>
         <div className="opacity-70">Intentionally small</div>
@@ -95,7 +95,7 @@ export function Hero() {
       {/* Content */}
       <motion.div
         style={{ x: x * 6, y: y * 6 }}
-        className="relative mx-auto max-w-4xl px-6 pt-24 text-center"
+        className="relative z-10 mx-auto max-w-4xl px-6 pt-24 text-center"
       >
         <motion.p
           initial={{ opacity: 0, y: 16 }}
